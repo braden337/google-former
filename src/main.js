@@ -20,29 +20,31 @@ async function getForm(event) {
       body: JSON.stringify({url}),
     });
 
-    let docString = await response.text();
-    let googleFormDocument = new DOMParser().parseFromString(
-      docString,
+    let body = await response.text();
+    let googleFormsDocument = new DOMParser().parseFromString(
+      body,
       'text/html'
     );
 
-    let fields = [...googleFormDocument.querySelectorAll('[data-params]')]
+    let action = googleFormsDocument.querySelector('form').action;
+
+    let fields = [...googleFormsDocument.querySelectorAll('[data-params]')]
       .map(x => x.dataset.params.match(/"([\w\s]+)".+\[(\d+)/).slice(1))
       .map(([title, id]) => ({title, name: `entry.${id}`}));
 
     if (fields.length > 0) {
-      let yourForm = '<form>\n';
+      let your_new_form = `<form action="${action}">\n`;
 
       for (let field of fields) {
-        yourForm += `  <label>${field.title}</label>\n`;
-        yourForm += `  <input type="text" name="${field.name}" required />\n\n`;
+        your_new_form += `  <label>${field.title}</label>\n`;
+        your_new_form += `  <input type="text" name="${field.name}" required />\n\n`;
       }
 
-      yourForm += '  <input type="submit" value="Send" />\n';
-      yourForm += '</form>';
+      your_new_form += '  <input type="submit" value="Send" />\n';
+      your_new_form += '</form>';
 
       let pre = document.createElement('pre');
-      pre.innerText = yourForm;
+      pre.innerText = your_new_form;
       form.replaceWith(pre);
     } else {
       err();
