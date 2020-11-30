@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 18px;
+}
+
+body {
+  background-color: mediumslateblue;
+  min-height: 100vh;
+  display: flex;
+}
+
+form {
+  padding: 2rem;
+  background-color: #fff;
+  margin: auto;
+  display: flex;
+  border-radius: 0.3rem;
+
+  input {
+    font-size: 1.5rem;
+    margin: auto;
+    width: 400px;
+    padding: 0.4rem;
+    font-family: monospace;
+  }
+}
+
+pre {
+  margin: auto;
+  width: max-content;
+  padding: 1rem;
+  font-family: monospace;
+  overflow: auto;
+  background-color: white;
+  border-radius: 0.3rem;
+}
