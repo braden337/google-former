@@ -3,7 +3,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "parcel:watch": "parcel watch src/index.html --out-dir dist",
-    "parcel:build": "parcel build src/index.html --out-dir dist",
+    "parcel:build": "parcel build src/index.html --out-dir dist --public-url './'",
     "serve": "nodemon src/app.js",
     "watch": "run-p parcel:watch serve",
     "dev": "run-s clean watch",
