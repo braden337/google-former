@@ -12,6 +12,7 @@ body {
   background-color: mediumslateblue;
   min-height: 100vh;
   display: flex;
+  padding: 1rem;
 }
 
 form {
@@ -32,7 +33,7 @@ form {
 
 pre {
   margin: auto;
-  width: max-content;
+  max-width: 700px;
   padding: 1rem;
   font-family: monospace;
   overflow: auto;
