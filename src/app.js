@@ -2,13 +2,14 @@ require('dotenv').config();
 const express = require('express');
 const fetch = require('node-fetch');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
 
-app.use(express.static('public'));
+app.use(cors());
 app.use(bodyParser.json());
 
-app.post('/form', form);
+app.post('/', form);
 
 async function form(req, res) {
   let form = req.body;
