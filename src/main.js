@@ -11,7 +11,7 @@ async function getForm(event) {
   let url = data.get('url');
 
   if (url !== undefined && url !== '') {
-    let response = await fetch('https://google-formmer.glitch.me/', {
+    let response = await fetch('https://google-former.glitch.me/', {
       method: 'POST',
       mode: 'cors',
       headers: {
