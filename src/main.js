@@ -33,7 +33,7 @@ async function getForm(event) {
       .map(([title, id]) => ({title, name: `entry.${id}`}));
 
     if (fields.length > 0) {
-      let yourForm = `<form action="${action}">\n`;
+      let yourForm = `<form method="POST" action="${action}">\n`;
 
       for (let field of fields) {
         yourForm += `  <label>${field.title}</label>\n`;
