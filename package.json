@@ -4,13 +4,13 @@
     "clean": "rimraf dist",
     "parcel:watch": "parcel watch src/index.html --out-dir dist",
     "parcel:build": "parcel build src/index.html --out-dir dist --public-url './'",
-    "serve": "nodemon src/app.js",
+    "serve": "nodemon src/server.js",
     "watch": "run-p parcel:watch serve",
     "dev": "run-s clean watch",
     "build": "run-s clean parcel:build",
     "publish": "gh-pages -d dist",
     "deploy": "run-s build publish",
-    "production": "node src/app.js",
+    "production": "node src/server.js",
     "start": "run-s build production"
   },
   "devDependencies": {
