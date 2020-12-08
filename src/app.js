@@ -8,8 +8,9 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static('dist'));
 
-app.post('/', form);
+app.post('/forms', form);
 
 async function form(req, res) {
   let form = req.body;

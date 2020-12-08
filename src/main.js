@@ -2,6 +2,9 @@ import 'regenerator-runtime/runtime';
 import './style.scss';
 import Swal from 'sweetalert2';
 
+let domain = process.env.SERVER_DOMAIN;
+domain = domain ? `https://${domain}` : '';
+
 form.onsubmit = getForm;
 
 async function getForm(event) {
@@ -11,7 +14,7 @@ async function getForm(event) {
   let url = data.get('url');
 
   if (url !== undefined && url !== '') {
-    let response = await fetch('https://google-former.glitch.me/', {
+    let response = await fetch(`${domain}/forms`, {
       method: 'POST',
       mode: 'cors',
       headers: {
@@ -21,10 +24,7 @@ async function getForm(event) {
     });
 
     let body = await response.text();
-    let document = new DOMParser().parseFromString(
-      body,
-      'text/html'
-    );
+    let document = new DOMParser().parseFromString(body, 'text/html');
 
     let action = document.querySelector('form').action;
 

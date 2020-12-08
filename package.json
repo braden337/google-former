@@ -10,7 +10,8 @@
     "build": "run-s clean parcel:build",
     "publish": "gh-pages -d dist",
     "deploy": "run-s build publish",
-    "start": "node src/app.js"
+    "production": "node src/app.js",
+    "start": "run-s build production"
   },
   "devDependencies": {
     "gh-pages": "^3.1.0",
