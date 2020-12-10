@@ -3,6 +3,22 @@ import './style.scss';
 import Swal from 'sweetalert2';
 import {escape} from 'lodash';
 
+const javascriptSnippet = `# Your Javascript Snippet
+
+document.querySelector('form').onsubmit = function(event) {
+  event.preventDefault();
+  let form = event.target;
+
+  fetch(form.action, {
+    method: 'POST',
+    mode: 'no-cors',
+    body: new FormData(form),
+  });
+
+  form.reset();
+  alert('Your message was sent');
+};`;
+
 let domain = process.env.SERVER_DOMAIN;
 domain = domain ? `https://${domain}` : '';
 
@@ -42,17 +58,20 @@ async function getForm(event) {
       .map(([title, id]) => ({title, name: `entry.${id}`}));
 
     if (fields.length > 0) {
-      let yourForm = `<form method="POST" action="${action}">\n`;
+      let htmlSnippet = `# Your HTML Snippet\n\n<form method="POST" action="${action}">\n`;
 
       for (let field of fields) {
-        yourForm += `  <label>${field.title}</label>\n`;
-        yourForm += `  <input type="text" name="${field.name}" required />\n\n`;
+        htmlSnippet += `  <label>${field.title}</label>\n`;
+        htmlSnippet += `  <input type="text" name="${field.name}" required />\n\n`;
       }
 
-      yourForm += '  <input type="submit" value="Send" />\n';
-      yourForm += '</form>';
+      htmlSnippet += '  <input type="submit" value="Send" />\n';
+      htmlSnippet += '</form>\n\n';
 
-      loading.insertAdjacentHTML('afterend', `<pre>${escape(yourForm)}</pre>`);
+      loading.insertAdjacentHTML(
+        'afterend',
+        `<pre>${escape(htmlSnippet + javascriptSnippet)}</pre>`
+      );
       loading.remove();
     } else {
       err();
