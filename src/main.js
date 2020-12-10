@@ -6,7 +6,7 @@ import ClipboardJS from 'clipboard';
 
 const javascriptSnippet = `# Your Javascript Snippet
 
-document.querySelector('form').onsubmit = function(event) {
+document.querySelector('form').onsubmit = function (event) {
   event.preventDefault();
   let form = event.target;
 
@@ -14,10 +14,10 @@ document.querySelector('form').onsubmit = function(event) {
     method: 'POST',
     mode: 'no-cors',
     body: new FormData(form),
-  });
-
-  form.reset();
-  alert('Your message was sent');
+  }).then(() => {
+    form.reset();
+    alert('Your message was sent');
+  })
 };`;
 
 let domain = process.env.SERVER_DOMAIN;
