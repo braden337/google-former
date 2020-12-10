@@ -19,24 +19,18 @@ npm run dev
 
 ## Deployment
 
-### GitHub Pages (default)
-
-Deploy client side app to GitHub Pages and communicate with my server
+Deploy client side app to [GitHub Pages](https://pages.github.com),
+[Surge](https://surge.sh) and [Netlify](https://netlify.com) and communicate
+with my server
 
 ```shell
 npm run deploy
-
-# Your app will be available at
-
-# https://USERNAME.github.io/REPONAME/
-
-# where USERNAME is your GitHub username
-# and REPONAME is the name of your forked repository
 ```
 
 ### Your own server
 
-Clone this repository onto your server and remove `SERVER_DOMAIN` from the `.env` file
+Clone this repository onto your server and remove `SERVER_DOMAIN` from the
+`.env` file
 
 ```shell
 npm start

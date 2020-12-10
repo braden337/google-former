@@ -9,7 +9,7 @@
     "dev": "run-s clean watch",
     "build": "run-s clean build:assets",
     "gh-pages": "gh-pages -d dist",
-    "surge": "surge -d https://google-former.surge.sh dist",
+    "surge": "surge dist",
     "netlify": "netlify deploy --prod --dir dist",
     "production": "node src/server.js",
     "deploy": "run-s build gh-pages surge netlify",
