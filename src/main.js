@@ -29,8 +29,10 @@ async function getForm(event) {
   let data = new FormData(form);
 
   let url = data.get('url');
+  const isFormsURL =
+    url.includes('docs.google.com/forms') || url.includes('forms.gle');
 
-  if (url !== undefined && url !== '') {
+  if (isFormsURL) {
     form.insertAdjacentHTML(
       'afterend',
       '<div class="loading-circle"><div></div></div>'
@@ -74,20 +76,15 @@ async function getForm(event) {
       );
       loading.remove();
     } else {
-      err();
+      err('Unable to parse your form');
     }
   } else {
-    err();
+    err("That doesn't seem to be a Google Forms URL");
   }
 }
 
-async function err() {
-  await Swal.fire(
-    'Try again',
-    "That doesn't seem to be a Google Forms URL",
-    'error'
-  );
-
+async function err(message) {
+  await Swal.fire('Try again', message, 'error');
   form.reset();
   form.focus();
 }
