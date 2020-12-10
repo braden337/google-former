@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,10 +8,11 @@
 
 html {
   font-size: 18px;
+  font-family: 'Source Code Pro', monospace;
 }
 
 body {
-  background-color: mediumslateblue;
+  background-color: #282a36;
   min-height: 100vh;
   display: flex;
   padding: 1rem;
@@ -17,17 +20,20 @@ body {
 
 form {
   padding: 2rem;
-  background-color: #fff;
+  background-color: #6272a4;
   margin: auto;
   display: flex;
   border-radius: 0.3rem;
 
   input {
+    background-color: #f8f8f2;
+    border: none;
+    border-radius: inherit;
     font-size: 1.5rem;
     margin: auto;
     width: 400px;
     padding: 0.4rem;
-    font-family: monospace;
+    font-family: inherit;
   }
 }
 
@@ -35,12 +41,16 @@ pre {
   margin: auto;
   max-width: 700px;
   padding: 1rem;
-  font-family: monospace;
+  font-family: inherit;
   overflow: auto;
-  background-color: white;
+  background-color: #6272a4;
+  color: #ff79c6;
   border-radius: 0.3rem;
+  cursor: pointer;
+  &:active {
+    background-color: #44475a;
+  }
 }
-
 
 .loading-circle {
   margin: auto;
@@ -54,12 +64,13 @@ pre {
   height: 64px;
   margin: 8px;
   border-radius: 50%;
-  background: #fff;
+  background: #ff79c6;
   animation: loading-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
 
 @keyframes loading-circle {
-  0%, 100% {
+  0%,
+  100% {
     animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
   }
   0% {
