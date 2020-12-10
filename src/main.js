@@ -2,6 +2,7 @@ import 'regenerator-runtime/runtime';
 import './style.scss';
 import Swal from 'sweetalert2';
 import {escape} from 'lodash';
+import ClipboardJS from 'clipboard';
 
 const javascriptSnippet = `# Your Javascript Snippet
 
@@ -74,7 +75,26 @@ async function getForm(event) {
         'afterend',
         `<pre>${escape(htmlSnippet + javascriptSnippet)}</pre>`
       );
+
       loading.remove();
+
+      const clipboard = new ClipboardJS('pre', {
+        target: function (trigger) {
+          return trigger;
+        },
+      });
+
+      clipboard.on('success', function (event) {
+        event.clearSelection();
+        Swal.fire({
+          text: 'Copied to clipboard',
+          toast: true,
+          position: 'top',
+          timer: 1500,
+          timerProgressBar: true,
+          showConfirmButton: false,
+        });
+      });
     } else {
       err('Unable to parse your form');
     }
