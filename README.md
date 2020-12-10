@@ -6,7 +6,7 @@
 2. Install dependencies
 
 ```shell
-npm install
+npm ci
 ```
 
 ## Development
