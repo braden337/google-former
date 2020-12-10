@@ -4,7 +4,7 @@
     "clean": "rimraf dist",
     "watch:assets": "parcel watch src/index.html --out-dir dist",
     "build:assets": "parcel build src/index.html --out-dir dist --public-url './'",
-    "serve": "nodemon src/server.js",
+    "serve": "nodemon --watch src/server.js src/server.js",
     "watch": "run-p watch:assets serve",
     "dev": "run-s clean watch",
     "build": "run-s clean build:assets",
