@@ -1,6 +1,7 @@
 import 'regenerator-runtime/runtime';
 import './style.scss';
 import Swal from 'sweetalert2';
+import {escape} from 'lodash';
 
 let domain = process.env.SERVER_DOMAIN;
 domain = domain ? `https://${domain}` : '';
@@ -14,6 +15,14 @@ async function getForm(event) {
   let url = data.get('url');
 
   if (url !== undefined && url !== '') {
+    form.insertAdjacentHTML(
+      'afterend',
+      '<div class="loading-circle"><div></div></div>'
+    );
+
+    const loading = form.nextElementSibling;
+    form.remove();
+
     let response = await fetch(`${domain}/forms`, {
       method: 'POST',
       mode: 'cors',
@@ -43,9 +52,8 @@ async function getForm(event) {
       yourForm += '  <input type="submit" value="Send" />\n';
       yourForm += '</form>';
 
-      let pre = document.createElement('pre');
-      pre.innerText = yourForm;
-      form.replaceWith(pre);
+      loading.insertAdjacentHTML('afterend', `<pre>${escape(yourForm)}</pre>`);
+      loading.remove();
     } else {
       err();
     }
